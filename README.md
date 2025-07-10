@@ -11,12 +11,6 @@ This is a simple, educational command-line tool designed to read a specific rang
 -   Prints the values of the read registers to the console.
 -   Includes a verbose mode for detailed debugging output.
 
-## Requirements
-
--   Python 3.x
--   `pymodbus` library
-
-You can install the required library using pip:
 ```bash
 pip install pymodbus
 
