@@ -60,7 +60,3 @@ Use `--verbose` with any command for debug logging.
 ```bash
 python3 modbus-enum.py read-coils --target 192.168.1.100 --slave 1 --start 0 --end 10 --verbose
 ```
-
-## License
-
-This tool is provided as-is for educational and diagnostic purposes.
