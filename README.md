@@ -1,48 +1,66 @@
-# Modbus Holding Register Reader
+# Modbus TCP Tool
 
-## Overview
-
-This is a simple, educational command-line tool designed to read a specific range of Holding Registers from a Modbus TCP device. Its primary purpose is to provide a clear and heavily commented example of how to connect to a Modbus device and read data using the `pymodbus` library in Python.
+A comprehensive Python script for interacting with Modbus TCP devices via the command line. This utility supports reading and writing both coils and holding registers.
 
 ## Features
 
--   Connects to any Modbus TCP device over the network.
--   Reads a user-specified range of holding registers (Function Code 0x03).
--   Prints the values of the read registers to the console.
--   Includes a verbose mode for detailed debugging output.
+- Read a range of coils
+- Write to a single coil
+- Read a range of holding registers
+- Write to a single holding register
+- Modular design with verbose logging support
 
-Install pymodbus
-```
+## Requirements
+
+- Python 3.x
+- `pymodbus` library
+
+Install dependencies with:
+
+```bash
 pip install pymodbus
 ```
 
-Usage
-The script is run from the command line and requires a target IP address, a starting register address, and an ending register address.
+## Usage
 
-```
-python3 read-hr.py --target <IP_ADDRESS> --start <START_ADDRESS> --end <END_ADDRESS> [--verbose]
-```
-
-Command-Line Arguments
-```
---target: (Required) The IP address of the Modbus TCP device you want to connect to.
-
---start: (Required) The first holding register address in the range you want to read.
-
---end: (Required) The last holding register address in the inclusive range you want to read.
-
---verbose: (Optional) An optional flag that, when included, enables detailed debug logging. This is useful for troubleshooting connection issues or viewing the raw Modbus traffic.
+```bash
+python3 modbus-enum.py <command> [options]
 ```
 
-Example
-To read holding registers from address 100 to 110 on a device with the IP address 192.168.1.52, you would use the following command:
+### Commands
 
-```
-python3 read-hr.py --target 192.168.1.52 --start 100 --end 110
+#### Read Coils
+
+```bash
+python3 modbus-enum.py read-coils --target <IP> --slave <ID> --start <START> --end <END>
 ```
 
-To run the same command with detailed debugging output:
+#### Write Coil
 
+```bash
+python3 modbus-enum.py write-coil --target <IP> --slave <ID> --address <ADDR> --value <0|1>
 ```
-python3 read-hr.py --target 192.168.1.52 --start 100 --end 110 --verbose
+
+#### Read Holding Registers
+
+```bash
+python3 modbus-enum.py read-registers --target <IP> --slave <ID> --start <START> --end <END>
 ```
+
+#### Write Holding Register
+
+```bash
+python3 modbus-enum.py write-register --target <IP> --slave <ID> --address <ADDR> --value <INT>
+```
+
+Use `--verbose` with any command for debug logging.
+
+## Example
+
+```bash
+python3 modbus-enum.py read-coils --target 192.168.1.100 --slave 1 --start 0 --end 10 --verbose
+```
+
+## License
+
+This tool is provided as-is for educational and diagnostic purposes.
